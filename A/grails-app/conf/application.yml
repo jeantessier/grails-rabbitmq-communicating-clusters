@@ -131,3 +131,17 @@ rabbitmq:
         host: localhost
         username: guest
         password: guest
+
+    queues:
+      - name: B_to_A
+        exchange: B
+      - name: C_to_A
+        exchange: C
+
+    exchanges:
+      - name: A
+        type: fanout
+      - name: B
+        type: fanout
+      - name: C
+        type: fanout
