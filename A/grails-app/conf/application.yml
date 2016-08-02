@@ -124,3 +124,10 @@ grails:
 endpoints:
     jmx:
         unique-names: true
+
+rabbitmq:
+    connections:
+      - name: main
+        host: localhost
+        username: guest
+        password: guest
