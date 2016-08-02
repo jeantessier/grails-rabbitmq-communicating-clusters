@@ -145,3 +145,6 @@ rabbitmq:
         type: fanout
       - name: C
         type: fanout
+
+rabbit_system:
+    publisher_exchange: A
