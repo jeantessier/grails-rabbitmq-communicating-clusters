@@ -40,7 +40,7 @@ If nodes in cluster `A` publish multiple messages, they should be distributed am
 
 1. Wait for clusters to start.  They are ready when they all show a message saying:
 
-   ``` bash
+   ```
    Grails application running at http://localhost:8?9? in environment: development
    ```
 
