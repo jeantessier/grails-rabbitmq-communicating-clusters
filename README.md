@@ -37,10 +37,12 @@ If nodes in cluster `A` publish multiple messages, they should be distributed am
    You can add clusters by adding to line 1: `for cluster in A:819 B:829 C:839`.
 
    You can change the size of the clusters by adding to line 6: `for n in 1 2 3`.
-
+I
 1. Wait for clusters to start.  They are ready when they all show a message saying:
 
-       Grails application running at http://localhost:8?9? in environment: development
+   ``` bash
+   Grails application running at http://localhost:8?9? in environment: development
+   ```
 
 1. Send messages:
 
