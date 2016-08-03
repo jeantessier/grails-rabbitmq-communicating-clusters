@@ -15,20 +15,24 @@ If nodes in cluster `A` publish multiple messages, they should be distributed am
 
 1. Start RabbitMQ:
 
-       $ ${RABBITMQ_HOME}/sbin/rabbitmq-server
+   ``` bash
+   ${RABBITMQ_HOME}/sbin/rabbitmq-server
+   ```
 
 1. Start the clusters:
 
-       for cluster in A:819 B:829 C:839
-       do
-           NAME=${cluster%%:*}
-           PORT_PREFIX=${cluster##*:}
+   ``` bash
+   for cluster in A:819 B:829 C:839
+   do
+       NAME=${cluster%%:*}
+       PORT_PREFIX=${cluster##*:}
   
-           for n in 1 2 3
-           do
-               (cd ${NAME}; GRAILS_OPTS="-Dnode.name=${NAME}${n} -Dserver.port=${PORT_PREFIX}${n}" ./gradlew bootRun) &
-           done
+       for n in 1 2 3
+       do
+           (cd ${NAME}; GRAILS_OPTS="-Dnode.name=${NAME}${n} -Dserver.port=${PORT_PREFIX}${n}" ./gradlew bootRun) &
        done
+   done
+   ```
 
    You can add clusters by adding to line 1: `for cluster in A:819 B:829 C:839`.
 
