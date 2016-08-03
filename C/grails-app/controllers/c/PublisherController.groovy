@@ -13,7 +13,12 @@ class PublisherController {
     }
 
     def getMessage() {
-        System.getProperty("node.name") + ":" + count
+        [
+            node: [
+                name: System.getProperty("node.name"),
+            ],
+            count: count,
+        ]
     }
 
     def getCount() {
