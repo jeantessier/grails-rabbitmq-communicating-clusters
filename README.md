@@ -17,37 +17,33 @@ If nodes in cluster `A` publish multiple messages, they should be distributed am
 
        $ ${RABBITMQ_HOME}/sbin/rabbitmq-server
 
-1. Start the clusters
+1. Start the clusters:
 
-    1. Start the `A` cluster:
-
-           $ for n in 1 2 3
+       for cluster in A:819 B:829 C:839
+       do
+           NAME=${cluster%%:*}
+           PORT_PREFIX=${cluster##*:}
+  
+           for n in 1 2 3
            do
-               cd A
-               GRAILS_OPTS="-Dnode.name=A$n -Dserver.port=819$n" ./gradlew bootRun
+               (cd ${NAME}; GRAILS_OPTS="-Dnode.name=${NAME}${n} -Dserver.port=${PORT_PREFIX}${n}" ./gradlew bootRun) &
            done
+       done
 
-    1. Start the `B` cluster:
+   You can add clusters by adding to line 1: `for cluster in A:819 B:829 C:839`.
 
-           $ for n in 1 2 3
-           do
-               cd B
-               GRAILS_OPTS="-Dnode.name=B$n -Dserver.port=829$n" ./gradlew bootRun
-           done
-
-    1. Start the `C` cluster:
-
-           $ for n in 1 2 3
-           do
-               cd C
-               GRAILS_OPTS="-Dnode.name=C$n -Dserver.port=839$n" ./gradlew bootRun
-           done
+   You can change the size of the clusters by adding to line 6: `for n in 1 2 3`.
 
 1. Wait for clusters to start.  They are ready when they all show a message saying:
 
        Grails application running at http://localhost:8?9? in environment: development
 
-1. Send messages
+1. Send messages:
 
-    1. Point your browser to [http://localhost:8191/publisher](http://localhost:8191/publisher)
-    1. Repeat
+    1. Point your browser to [http://localhost:8191/publisher](http://localhost:8191/    publisher)
+    1. See traces from clusters `B` and `C` that show a message from `A1`
+    1. Repeat (traces should move around the nodes in each cluster)
+
+## Stopping The System
+
+You're on your own.  Good luck!
