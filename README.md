@@ -1,4 +1,4 @@
-# Rabbit System
+# RabbitMQ System
 
 Multiple clusters communicate with one another through a RabbitMQ instance.
 
