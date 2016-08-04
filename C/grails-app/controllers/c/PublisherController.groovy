@@ -9,7 +9,7 @@ class PublisherController {
             exchange = grailsApplication.config.rabbit_system.publisher_exchange
             body = message
         }
-	render message
+        render message
     }
 
     def getMessage() {
@@ -23,10 +23,10 @@ class PublisherController {
 
     def getCount() {
         if (!request.count) {
-	    request.count = (servletContext.count ?: 0) + 1
-	    servletContext.count = request.count
-	}
-	return request.count
+            request.count = (servletContext.count ?: 0) + 1
+            servletContext.count = request.count
+        }
+        return request.count
     }
 
 }
