@@ -19,6 +19,13 @@ If nodes in cluster `A` publish multiple messages, they should be distributed am
 
 1. Start RabbitMQ:
 
+If you are using Docker:
+
+1. `docker create --name rabbitmq -p 5672:5672 rabbitmq`
+1. `docker start rabbitmq`
+
+Or, if you've installed RabbitMQ locally:
+
    ``` bash
    ${RABBITMQ_HOME}/sbin/rabbitmq-server
    ```
@@ -30,7 +37,7 @@ If nodes in cluster `A` publish multiple messages, they should be distributed am
    do
        NAME=${cluster%%:*}
        PORT_PREFIX=${cluster##*:}
-  
+
        for n in 1 2 3
        do
            (cd ${NAME}; GRAILS_OPTS="-Dnode.name=${NAME}${n} -Dserver.port=${PORT_PREFIX}${n}" ./gradlew bootRun) &
