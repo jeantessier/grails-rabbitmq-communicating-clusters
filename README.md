@@ -7,24 +7,33 @@ Multiple clusters communicate with one another through a RabbitMQ instance.
 Clusters `A`, `B`, and `C` each have three nodes.  Each node in a cluster:
 
 - publishes messages to that cluster's exchange.
-- reads from queues from each other cluster.
+- reads from a number of queues, one for each of the other clusters.
 
 ![Topography](https://github.com/jeantessier/grails-rabbitmq-communicating-clusters/raw/master/topography.png)
 
-If node `A1` publishes a message, it will be handled by a single node in cluster `B` and a single node in cluster `C`.
+If node `A1` publishes a message, it will be handled by a single node in cluster
+`B` and a single node in cluster `C`.
 
-If nodes in cluster `A` publish multiple messages, they should be distributed amongst the nodes of cluster `B` and also amongst the nodes of cluster `C`.
+If nodes in cluster `A` publish multiple messages, they should be distributed
+amongst the nodes of cluster `B` and also amongst the nodes of cluster `C`.
 
 ## Running The System
 
 1. Start RabbitMQ:
 
-If you are using Docker:
+   If you are using Docker, create a RabbitMQ image:
 
-1. `docker create --name rabbitmq -p 5672:5672 rabbitmq`
-1. `docker start rabbitmq`
+   ``` bash
+   docker create --name rabbitmq -p 5672:5672 rabbitmq
+   ```
 
-Or, if you've installed RabbitMQ locally:
+   and then, run RabbitMQ within a Docker container:
+
+   ``` bash
+   docker start rabbitmq
+   ```
+
+   Or, if you've installed RabbitMQ locally, just start it:
 
    ``` bash
    ${RABBITMQ_HOME}/sbin/rabbitmq-server
