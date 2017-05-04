@@ -9,7 +9,7 @@ class BConsumer {
     ]
 
     def handleMessage(String message, MessageContext context) {
-        println System.getProperty("node.name") + ": message from B: \"" + message + "\""
+        log.info System.getProperty("node.name") + ": message from B: \"" + message + "\""
     }
 
 }

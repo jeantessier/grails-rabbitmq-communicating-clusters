@@ -9,7 +9,7 @@ class CConsumer {
     ]
 
     def handleMessage(String message, MessageContext context) {
-        println System.getProperty("node.name") + ": message from C: \"" + message + "\""
+        log.info System.getProperty("node.name") + ": message from C: \"" + message + "\""
     }
 
 }
